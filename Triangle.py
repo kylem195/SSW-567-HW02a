@@ -50,13 +50,14 @@ def classifyTriangle(a,b,c):
         return 'Not A Triangle'
         
     # now we know that we have a valid triangle 
+    epsilon = .0000001
     if a == b and b == c and c == a:
         return 'Equilateral'
-    elif ((a**2 + b**2) == c**2 or
-          (b**2 + c**2 == (a**2)) or
-          (c**2 + a**2) == (b**2)):
+    elif (abs(a**2 + b**2 - c**2) < epsilon or
+          abs(b**2 + c**2 - a**2) < epsilon or
+          abs(c**2 + a**2 - b**2) < epsilon):
         return 'Right'
     elif (a != b) and  (b != c) and (a != c):
         return 'Scalene'
     else:
-        return 'Isoceles'
+        return 'Isosceles'
